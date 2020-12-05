@@ -3,4 +3,5 @@
 #get pronto (VPN required)
 $ conda install -c bioconda pronto
 $ git clone https://github.com/althonos/pronto
+$ pip install pandas
 $ cd pronto
