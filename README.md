@@ -1,2 +1,6 @@
 # Match-ARO-NOs-to-Resfinder-Sequences
-Assigning ARG sequences in Resfinder database to their corresponding ARO numbers
+# Pronto used
+#get pronto (VPN required)
+$ conda install -c bioconda pronto
+$ git clone https://github.com/althonos/pronto
+$ cd pronto
