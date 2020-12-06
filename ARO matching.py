@@ -14,4 +14,8 @@ list(t.subclasses())
 
 ```#load resfinder sequences for matching
 import pandas as pd
-resfinder_seq = pd.read_txt("sequence.txt", sep=" ", header=None)
+resfinder_seq = pd.read_csv("beta-lactam.csv", sep=" ", header=None)
+* if permission denied, change access 
+$ chmod 755 beta-lactam.csv
+
+#now match aro info to resfinder_seq
