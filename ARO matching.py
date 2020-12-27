@@ -30,7 +30,7 @@ for a in set(resfinder_seq['#Aminoglycoside']):
         continue
     t = aro[a]
     cf = aro['name.lower()']
-    cur = list(t.objects(cf))
+    cur = list(t.subclasses(cf))
     if cur:
         aro2seq[a] = ';'.join([c.name for c in cur])
         
