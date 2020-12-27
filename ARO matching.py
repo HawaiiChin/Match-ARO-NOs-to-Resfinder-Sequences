@@ -11,6 +11,16 @@ list(t.objects(cf))
 list(t.superclasses())
 list(t.subclasses())
 
+#change format to obo
+with open('aro.obo', 'wb') as f:
+    aro.dump(f, format = 'obo')
+    
+#find terms
+aro = Ontology("aro.obo")
+for term in aro.terms():
+    if term.is_leaf():
+        print(term.id)
+        
 #load resfinder sequences for matching
 import pandas as pd
 resfinder_seq = pd.read_csv("resfinder.csv", sep=" ", header=None)
