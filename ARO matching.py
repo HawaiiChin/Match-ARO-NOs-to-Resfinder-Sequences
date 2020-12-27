@@ -1,19 +1,28 @@
 from pronto import Ontology
 
 cl = Ontology("http://purl.obolibrary.org/obo/cl.obo")
-#for ARGs here (ARO for antibiotic resistance ontology--aro.owl from https://card.mcmaster.ca/download)
+#for ARGs (ARO for antibiotic resistance ontology--aro.owl from https://card.mcmaster.ca/download)
 
 aro = Ontology.from_obo_library("aro.owl")
-
 #exploring ontology
 cf = aro['confers_resistance_to_antibiotic']
-t = aro['ARO:XXXXXXX']
+t = aro['ARO:1000001']
 list(t.objects(cf))
 list(t.superclasses())
 list(t.subclasses())
 
 #load resfinder sequences for matching
 import pandas as pd
-resfinder_seq = pd.read_csv("beta-lactam.csv", sep=" ", header=None)
-
-#now match aro info to resfinder_seq
+resfinder_seq = pd.read_csv("resfinder.csv", sep=" ", header=None)
+aro2seq = {}
+for a in set(resfinder_seq['#Aminoglycoside']):
+    if a not in aro:
+        continue
+    t = aro[a]
+    cf = aro['name.lower()']
+    cur = list(t.objects(cf))
+    if cur:
+        aro2seq[a] = ';'.join([c.name for c in cur])
+        
+pd.DataFrame({'Matching_ARO': pd.Series(aro2seq)
+             }).to_csv('aro2seq.csv', sep = '\t')
