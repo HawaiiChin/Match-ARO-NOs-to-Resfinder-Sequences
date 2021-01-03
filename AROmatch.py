@@ -27,3 +27,8 @@ for fname in glob('notes.txt'):
 
 frac = (len(matched)/(len(unmatched)  + len(matched)))
 print(f'Matched {len(matched)} of {len(matched)+len(unmatched)} ({frac:.2%}) of identifiers')
+
+pd.DataFrame({'Matching_ARO': pd.Series(matched)
+             }).to_csv('aro2seq.csv', sep = '\t')
+pd.DataFrame({'Matching_ARO': pd.Series(unmatched)
+             }).to_csv('!aro2seq.csv', sep = '\t')
